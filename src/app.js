@@ -14,12 +14,14 @@
     var params=new URLSearchParams(location.search);
     if(params.get('tag'))state.tag=params.get('tag');
     if(params.get('q')){state.q=params.get('q');q.value=state.q}
+    var eps=params.get('eps')?params.get('eps').split(','):null;
     function render(){
       var s=state.q.trim().toLowerCase().replace(/^ep\.?\s*/,''), shown=0, matched=[];
       rows.forEach(function(li){
-        var ok=(state.tag==='All'||li.dataset.tag===state.tag)&&(!s||li.dataset.search.indexOf(s)>-1||li.dataset.n===s);
+        var ok=(!eps||eps.indexOf(li.dataset.n)>-1)&&(state.tag==='All'||li.dataset.tag===state.tag)&&(!s||li.dataset.search.indexOf(s)>-1||li.dataset.n===s);
         li.hidden=true; if(ok)matched.push(li);
       });
+      if(eps)matched.sort(function(a,b){return eps.indexOf(a.dataset.n)-eps.indexOf(b.dataset.n)});
       if(state.oldest)matched.reverse();
       matched.forEach(function(li){list.appendChild(li)});
       matched.forEach(function(li,i){li.hidden=i>=state.limit});
@@ -28,8 +30,8 @@
       chips.forEach(function(c){c.setAttribute('aria-pressed',c.dataset.tag===state.tag?'true':'false')});
       sortBtn.textContent=state.oldest?'Oldest first':'Newest first';
     }
-    q.addEventListener('input',function(){state.q=q.value;state.limit=20;render()});
-    chips.forEach(function(c){c.addEventListener('click',function(){state.tag=c.dataset.tag;state.limit=20;render()})});
+    q.addEventListener('input',function(){eps=null;state.q=q.value;state.limit=20;render()});
+    chips.forEach(function(c){c.addEventListener('click',function(){eps=null;state.tag=c.dataset.tag;state.limit=20;render()})});
     more.addEventListener('click',function(){state.limit+=20;render()});
     sortBtn.addEventListener('click',function(){state.oldest=!state.oldest;render()});
     render();
