@@ -1,0 +1,47 @@
+name: Build and publish site
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 9 * * *'   # every day around 3 AM Utah time, picks up new episodes
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Refresh episode list from the podcast feed
+        run: python fetch_feed.py
+      - name: Save updated episode list
+        run: |
+          if ! git diff --quiet feed.json; then
+            git config user.name "site-bot"
+            git config user.email "site-bot@users.noreply.github.com"
+            git add feed.json
+            git commit -m "Update episodes from feed"
+            git push
+          fi
+      - name: Build site
+        run: python build.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
