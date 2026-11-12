@@ -365,7 +365,7 @@ about = f'''
 <div class="stack" style="gap:20px"><span class="pill" style="align-self:flex-start">About us</span><h1 class="h1">Hi, we’re the Nelsons.</h1>
 <p class="body" style="margin:0">We’re Lanette and Shaun, adoptive parents of four kids. Every one of their adoptions is open, with regular visits with their birth families. Our kids would tell you they have more than 16 grandparents who love them.</p>
 <p class="body" style="margin:0">We started this podcast in April 2021 to answer the questions friends kept asking us about open adoption. It quickly became something bigger: a place to listen to adoptees, birth parents, adoptive families and professionals, and to keep learning how to do better.</p></div>
-<div style="aspect-ratio:4/5;background:var(--sage);border-radius:32px;display:flex;align-items:center;justify-content:center;text-align:center;padding:32px;border:2px dashed var(--leaf)"><span style="font-weight:600;font-size:18px;color:var(--leaf-d)">[Photo of Lanette &amp; Shaun]</span></div>
+<img src="assets/about.jpg" width="800" height="1000" alt="Lanette and Shaun Nelson smiling together on a mountain hike" style="display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:32px">
 </div></section>
 <section class="dark"><div class="wrap stack sec" style="gap:36px">
 <div class="stack" style="max-width:820px;gap:16px"><span class="num" style="color:var(--sage)">Our mission</span><p class="serif" style="margin:0;font-size:clamp(24px,3vw,32px);line-height:1.4;font-weight:500">This podcast is about connecting. It’s about growing. It’s about stretching. The Open Adoption Project is a community dedicated to listening and learning, and building relationships based on healthy respect and communication.</p></div>
@@ -443,6 +443,7 @@ def episode_page(x, prev=None, nxt=None):
 if os.path.exists(DIST): shutil.rmtree(DIST)
 os.makedirs(f'{DIST}/assets'); os.makedirs(f'{DIST}/episodes')
 shutil.copy(f'{ROOT}/src/style.css', f'{DIST}/assets/style.css'); shutil.copy(f'{ROOT}/src/app.js', f'{DIST}/assets/app.js')
+if os.path.exists(f'{ROOT}/src/about.jpg'): shutil.copy(f'{ROOT}/src/about.jpg', f'{DIST}/assets/about.jpg')
 W = lambda p, s: open(f'{DIST}/{p}', 'w').write(s)
 W('index.html', page('Open Adoption Project | Adoption conversations centered on adoptee voices', 'A podcast with Lanette & Shaun Nelson, listening to adoptees, birth parents, adoptive families and researchers to learn what openness in adoption really looks like.', home, '', '', ''))
 W('start-here.html', page('Start Here: Openness 101 | Open Adoption Project', 'A beginner’s guide to openness in adoption: structural and communicative openness, research, myths and facts, key terms and a listening path.', start, 'start-here.html', '', 'start-here.html'))
