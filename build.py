@@ -305,6 +305,8 @@ start = f'''
 
 # ---------------- EPISODES ----------------
 rows = ''.join(f'''<li data-tag="{e(x['tag'])}" data-n="{x['n']}" data-search="{e((x['title']+' '+x['desc'][:400]).lower())}"><a class="eprow" href="{ep_url(x['n'])}"><span class="n">EP. {x['n']}</span><span class="t">{e(x['title'])}</span><span class="tag">{e(x['tag'])}</span><span class="d">{e(x['date'])}</span><span class="play">{ICON['play']}</span></a></li>''' for x in NUM)
+POPULAR = [64, 41, 35, 72, 22, 11, 15, 37, 69, 84, 49, 30]
+poprows = ''.join(f'''<li><a class="eprow" href="{ep_url(x['n'])}"><span class="n">EP. {x['n']}</span><span class="t">{e(x['title'])}</span><span class="tag">{e(x['tag'])}</span><span class="d">{e(x['date'])}</span><span class="play">{ICON['play']}</span></a></li>''' for p in POPULAR for x in NUM if str(x['n']) == str(p))
 chips = ''.join(f'<button type="button" class="fchip" data-tag="{e(t)}" aria-pressed="{"true" if t=="All" else "false"}">{e(t)}</button>' for t in ['All'] + TAGS)
 specials = ''.join(f'<a class="card" href="{ep_url(x["slug"])}" style="gap:8px"><span class="tag" style="align-self:flex-start">Special</span><span class="serif" style="font-size:19px;font-weight:500;line-height:1.35">{e(x["title"])}</span><span class="small" style="color:var(--muted-2)">{e(x["date"])}</span></a>' for x in SPECIAL)
 episodes = f'''
@@ -312,6 +314,8 @@ episodes = f'''
 <div class="stack" style="flex:1 1 520px;gap:16px"><h1 class="h1">Every episode</h1><p class="lead" style="margin:0;color:var(--mist);max-width:560px">{COUNT} conversations since April 2021. Search by name or topic, or filter by the part of the adoption constellation you want to hear from.</p></div>
 <a class="feat" href="{ep_url(LATEST['n'])}" style="flex:0 1 440px;flex-direction:row;align-items:center;gap:18px;padding:24px 26px;border-radius:22px;box-shadow:none"><span class="btn ink" style="width:56px;height:56px;padding:0;flex:0 0 56px">{ICON['play']}</span><span class="stack" style="gap:4px"><span style="font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase">Newest · Ep. {LATEST['n']} · {e(LATEST['date'])}</span><span class="serif" style="font-size:19px;line-height:1.3;font-weight:500">{e(LATEST['title'])}</span></span></a>
 </div></section>
+<section class="wrap" style="padding-top:48px;padding-bottom:8px"><h2 class="h2" style="font-size:32px;margin-bottom:8px">Most popular episodes</h2><p class="serif muted" style="margin:0 0 16px;font-size:18px">The conversations listeners come back to most.</p><ul class="eplist">{poprows}</ul></section>
+<section class="wrap" style="padding-top:32px"><h2 class="h2" style="font-size:32px;margin:0">All episodes</h2></section>
 <section class="wrap stack" style="padding-top:40px;padding-bottom:24px;gap:20px">
 <div class="chiprow" style="align-items:center"><label for="q" class="sr">Search episodes</label><div class="search">{ICON['search']}<input id="q" type="search" placeholder="Search by guest, topic or episode number" autocomplete="off"></div><button type="button" id="sort" class="btn line" style="min-height:56px">Newest first</button></div>
 <div class="chiprow" role="group" aria-label="Filter by topic">{chips}</div>
