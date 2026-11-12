@@ -162,7 +162,7 @@ home = f'''
 <div class="stack" style="gap:28px">
 <span class="pill sage" style="align-self:flex-start">The podcast · {COUNT} episodes</span>
 <h1 class="h1">Adoption conversations, centered on <em style="color:var(--sage)">adoptee voices.</em></h1>
-<p class="lead" style="margin:0;color:var(--mist);max-width:600px">Since 2021, Lanette and Shaun Nelson have been listening to adoptees, birth parents, adoptive families and researchers to learn what openness really looks like, and how to do it well.</p>
+<p class="lead" style="margin:0;color:var(--mist);max-width:600px">Since 2021, Lanette and Shaun Nelson have been interviewing adoptees, birth parents, adoptive families and researchers to learn what openness really looks like, and how to do it well.</p>
 <div class="chiprow"><a class="btn leaf" href="start-here.html">Start here</a><a class="btn line" href="episodes.html" style="color:var(--cream);border-color:var(--sage)">Browse episodes</a></div>
 <div id="listen" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span class="small" style="font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sage)">Listen free on</span>{listen_chips()}</div>
 </div>
@@ -219,7 +219,7 @@ home = f'''
 <div class="stack" style="gap:20px">
 <span class="pill" style="align-self:flex-start">The book</span>
 <h2 class="h2">The Openness Guide for Adoptive Parents</h2>
-<p class="lead muted" style="margin:0">Lanette wrote the book she wished we’d had when we adopted our first child: the roles you play beyond “mom” or “dad,” the honest questions to work through, and how to keep openness centered on your child. Grounded in the voices of adoptees and birth parents.</p>
+<p class="lead muted" style="margin:0">Lanette wrote the book she wished we’d had when we adopted our first child: the roles you play beyond “mom” or “dad,” the honest questions to work through, and how to keep openness centered on your child. Grounded in the voices of adoptees and birth parents. All proceeds from the book go right back into the podcast.</p>
 <div class="chiprow" style="align-items:center"><a class="btn leaf" href="{AMAZON}">Get it on Amazon</a><span class="small muted">Paperback &amp; Kindle</span></div>
 </div>
 <div style="display:flex;justify-content:center;padding:24px"><div class="book"><div><div class="t">The Openness Guide for Adoptive Parents</div><div class="s">What You Should Know About Open Adoption</div></div><div class="a">Lanette J. Nelson</div></div></div>
@@ -330,7 +330,7 @@ episodes = f'''
 
 # ---------------- RESOURCES ----------------
 def guide(name, eps, tagq):
-    return f'<a class="card" href="episodes.html?tag={e(tagq)}" style="flex-direction:row;justify-content:space-between;align-items:center;gap:16px"><span><span style="display:block;font-weight:600;font-size:20px">{name}</span><span class="serif muted" style="font-size:16px">{eps}</span></span><span style="font-size:24px" aria-hidden="true">→</span></a>'
+    return f'<a class="card" href="episodes.html?eps={",".join(re.findall(r"[0-9]+", eps))}" style="flex-direction:row;justify-content:space-between;align-items:center;gap:16px"><span><span style="display:block;font-weight:600;font-size:20px">{name}</span><span class="serif muted" style="font-size:16px">{eps}</span></span><span style="font-size:24px" aria-hidden="true">→</span></a>'
 def eplinks(ns): return ', '.join(f'<span>Ep. {n}</span>' for n in ns)
 resources = f'''
 <section class="wrap stack" style="padding-top:72px;padding-bottom:40px;gap:16px"><h1 class="h1">Resources</h1><p class="lead" style="margin:0;max-width:720px">Guides we’ve written, organizations we’ve learned from, and the episodes we point people to most.</p></section>
@@ -338,24 +338,26 @@ resources = f'''
 <div style="display:flex;justify-content:center"><div class="book" style="box-shadow:20px 24px 0 var(--ink)"><div><div class="t">The Openness Guide for Adoptive Parents</div><div class="s">What You Should Know About Open Adoption</div></div><div class="a">Lanette J. Nelson</div></div></div>
 <div class="stack" style="gap:18px"><span class="pill ink" style="align-self:flex-start;font-size:13px">The book</span>
 <h2 class="h2" style="font-size:40px">The book Lanette wishes we’d had when we adopted our first child</h2>
-<ul class="serif" style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:18px;line-height:1.5"><li>The roles you play beyond “mom” or “dad”: advocate, protector and connector</li><li>Honest questions to work through before and after you adopt</li><li>Grounded in the voices of adoptees and birth parents</li></ul>
+<ul class="serif" style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:18px;line-height:1.5"><li>The roles you play beyond “mom” or “dad”: advocate, protector and connector</li><li>Honest questions to work through before and after you adopt</li><li>Grounded in the voices of adoptees and birth parents</li><li>All proceeds go right back into the podcast</li></ul>
 <div class="chiprow" style="align-items:center"><a class="btn ink" href="{AMAZON}">Get it on Amazon</a><span class="small">Paperback &amp; Kindle</span></div></div>
 </div></section>
-<section class="wrap" style="padding-bottom:56px"><h2 class="h2" style="font-size:36px;margin-bottom:24px">Guides &amp; workbooks</h2><div class="g2">
-<div class="card"><span class="tag" style="align-self:flex-start">Guide &amp; workbook</span><h3 class="h3">The Openness Guide for Adoptive Parents (workbook edition)</h3><p class="serif muted" style="font-size:16px;line-height:1.55">More than 90 pages of guidance and exercises: visit schedules, conversations with birth parents, and the mindset shifts that make openness work.</p><a href="{GUM_OPENNESS}" style="margin-top:auto;font-weight:600">Get the workbook →</a></div>
-<div class="card"><span class="tag" style="align-self:flex-start">Guide</span><h3 class="h3">Substance Exposure in Utero: A Guide for Prospective Adoptive Parents</h3><p class="serif muted" style="font-size:16px;line-height:1.55">What to know and ask before saying yes to a placement involving prenatal substance exposure.</p><a href="{GUM_SUBSTANCE}" style="margin-top:auto;font-weight:600">Get the guide →</a></div>
+<section class="wrap" style="padding-bottom:56px"><h2 class="h2" style="font-size:36px;margin-bottom:24px">Guides</h2><div class="g2">
+<div class="card"><span class="tag" style="align-self:flex-start">Digital guide</span><h3 class="h3">The Openness Guide for Adoptive Parents (digital edition)</h3><p class="serif muted" style="font-size:16px;line-height:1.55">A digital openness guide with links to relevant podcast episodes and outside resources. Developed to help those wanting to understand the importance of openness, with real-world, specific guidance for how to practice it.</p><a href="{GUM_OPENNESS}" style="margin-top:auto;font-weight:600">Get the digital guide →</a></div>
+<div class="card"><span class="tag" style="align-self:flex-start">Guide</span><h3 class="h3">Substance Exposure in Utero: A Guide for Prospective Adoptive Parents</h3><p class="serif muted" style="font-size:16px;line-height:1.55">Unbiased information with no frills, tilt, or agenda for those wanting to understand research about prenatal substance exposure.</p><a href="{GUM_SUBSTANCE}" style="margin-top:auto;font-weight:600">Get the guide →</a></div>
 </div></section>
 <section class="wrap" style="padding-bottom:56px"><h2 class="h2" style="font-size:36px;margin-bottom:8px">Listening guides</h2><p class="serif muted" style="margin:0 0 24px;font-size:18px">Hand-picked starting points, or browse every episode on a topic.</p><div class="g2" style="gap:16px">
-{guide('Hear from adoptees', 'Ep. 95, 72, 120, 80, 64', 'Adoptee voices')}
-{guide('Birth parent stories', 'Ep. 105, 69, 108, 93', 'Birth parents')}
+{guide('Hear from adoptees', 'Ep. 59, 18, 76, 72, 71, 64, 37, 130', 'Adoptee voices')}
+{guide('Birth parent stories', 'Ep. 69, 108, 51, 41, 38, 29, 20', 'Birth parents')}
 {guide('Openness 101', 'Ep. 67, 68, 103, 104, 110', 'Openness 101')}
-{guide('Research &amp; practice', 'Ep. 85, 82, 91, 96, 100', 'Research & practice')}
+{guide('Research &amp; practice', 'Ep. 82, 85, 23, 121, 91, 96, 100', 'Research & practice')}
 {guide('Identity, race &amp; culture', 'Ep. 63, 83, 90, 102, 123', 'Identity & culture')}
 {guide('Adoption book club', 'Ep. 113, 114, 115, 116, 124, 125', 'Book club')}
 </div></section>
 <section class="wrap" style="padding-bottom:88px"><h2 class="h2" style="font-size:36px;margin-bottom:24px">Organizations we’ve learned from</h2><div class="g2" style="gap:16px">
 <div class="card" style="gap:8px"><span style="font-weight:600;font-size:20px">Brave Love</span><span class="serif muted" style="font-size:16px;line-height:1.55">Support and honor for birth mothers. Hear executive director Janelle Basham in <a href="{ep_url(121)}">Ep. 121</a>.</span></div>
-<div class="card" style="gap:8px"><span style="font-weight:600;font-size:20px">Destiny Adoption Foundation</span><span class="serif muted" style="font-size:16px;line-height:1.55">Partners on our Juneteenth specials about Black adoptees and families.</span></div>
+<div class="card" style="gap:8px"><span style="font-weight:600;font-size:20px">Destiny Adoption Foundation</span><span class="serif muted" style="font-size:16px;line-height:1.55">Partners on our Juneteenth specials about Black adoptees and families. Listen to the <a href="{ep_url('special-524421')}">Juneteenth special</a>.</span></div>
+<div class="card" style="gap:8px"><span style="font-weight:600;font-size:20px">Saving Our Sisters</span><span class="serif muted" style="font-size:16px;line-height:1.55">Support for expectant mothers considering adoption. Hear Candace Cahill in <a href="{ep_url(69)}">Ep. 69</a> and Amy Seek in <a href="{ep_url(108)}">Ep. 108</a>.</span></div>
+<div class="card" style="gap:8px"><span style="font-weight:600;font-size:20px">Utah Foster Care</span><span class="serif muted" style="font-size:16px;line-height:1.55">Finds, trains and supports foster families across Utah. Hear Liz Rivera in <a href="{ep_url(91)}">Ep. 91</a> and <a href="{ep_url(94)}">Ep. 94</a>, and Cadon Riley in <a href="{ep_url(106)}">Ep. 106</a>.</span></div>
 </div></section>
 '''
 
@@ -364,7 +366,7 @@ about = f'''
 <section class="wrap" style="padding-top:72px;padding-bottom:56px"><div class="g2" style="gap:56px;align-items:center">
 <div class="stack" style="gap:20px"><span class="pill" style="align-self:flex-start">About us</span><h1 class="h1">Hi, we’re the Nelsons.</h1>
 <p class="body" style="margin:0">We’re Lanette and Shaun, adoptive parents of four kids. Every one of their adoptions is open, with regular visits with their birth families. Our kids would tell you they have more than 16 grandparents who love them.</p>
-<p class="body" style="margin:0">We started this podcast in April 2021 to answer the questions friends kept asking us about open adoption. It quickly became something bigger: a place to listen to adoptees, birth parents, adoptive families and professionals, and to keep learning how to do better.</p></div>
+<p class="body" style="margin:0">We started this podcast in April 2021 to answer the questions friends kept asking us about open adoption. It quickly became something bigger: a place to listen to adoptees, birth parents, adoptive families and professionals, and to keep learning how to do better. At this time, we’re focused on interviewing adoptees and birth parents.</p></div>
 <img src="assets/about.jpg" width="800" height="1000" alt="Lanette and Shaun Nelson smiling together on a mountain hike" style="display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:32px">
 </div></section>
 <section class="dark"><div class="wrap stack sec" style="gap:36px">
@@ -376,7 +378,7 @@ about = f'''
 </div></div></section>
 <section class="wrap" style="padding-top:80px;padding-bottom:40px"><div class="g2">
 <div class="sagebg stack" style="border-radius:28px;padding:40px;gap:14px"><h2 class="serif" style="font-weight:500;font-size:34px;line-height:1.2">Share your story on the show</h2><p class="serif" style="margin:0;font-size:18px;line-height:1.6">We especially want to hear from adoptees and birth parents. Every story is different, and every one helps someone listening feel less alone. Fill out a short application and we’ll follow up within a week.</p><a class="btn ink" href="https://docs.google.com/forms/d/e/1FAIpQLSfEX3_lF1wB7njpnnMuj1BdT7FKmldT3RgPo_bW_iVdP_amGQ/viewform" target="_blank" rel="noopener" style="align-self:flex-start;margin-top:6px">Apply to be a guest</a></div>
-<div class="card" style="padding:40px"><h2 class="serif" style="font-weight:500;font-size:34px;line-height:1.2">Invite us to speak</h2><p class="serif muted" style="font-size:18px;line-height:1.6">We lead talks, trainings and adoptee panels on openness for agencies, conferences and parent groups, including the Utah Foster Care Annual Symposium.</p><a class="btn leaf" href="#contact" style="align-self:flex-start;margin-top:6px">Ask about speaking</a></div>
+<div class="card" style="padding:40px"><h2 class="serif" style="font-weight:500;font-size:34px;line-height:1.2">Invite us to speak</h2><p class="serif muted" style="font-size:18px;line-height:1.6">We occasionally speak at trainings and conferences, including for Utah Foster Care and Utah Adoption Specialists. We’ve also organized and moderated an adoptee panel for a statewide symposium. Reach out to ask about scheduling.</p><a class="btn leaf" href="#contact" style="align-self:flex-start;margin-top:6px">Ask about speaking</a></div>
 </div></section>
 <section id="contact" class="wrap" style="padding-top:40px;padding-bottom:96px"><div class="g2" style="gap:56px;align-items:flex-start">
 <div class="stack" style="gap:16px"><h2 class="h2">Contact us</h2><p class="lead muted" style="margin:0">Episode requests, questions, guest ideas, speaking requests or just a hello. We read every message.</p>
@@ -448,7 +450,7 @@ W = lambda p, s: open(f'{DIST}/{p}', 'w').write(s)
 W('index.html', page('Open Adoption Project | Adoption conversations centered on adoptee voices', 'A podcast with Lanette & Shaun Nelson, listening to adoptees, birth parents, adoptive families and researchers to learn what openness in adoption really looks like.', home, '', '', ''))
 W('start-here.html', page('Start Here: Openness 101 | Open Adoption Project', 'A beginner’s guide to openness in adoption: structural and communicative openness, research, myths and facts, key terms and a listening path.', start, 'start-here.html', '', 'start-here.html'))
 W('episodes.html', page('All Episodes | Open Adoption Project', f'Search all {COUNT} episodes of the Open Adoption Project podcast by guest or topic.', episodes, 'episodes.html', '', 'episodes.html'))
-W('resources.html', page('Resources | Open Adoption Project', 'The Openness Guide for Adoptive Parents, workbooks, listening guides and organizations for the adoption community.', resources, 'resources.html', '', 'resources.html'))
+W('resources.html', page('Resources | Open Adoption Project', 'The Openness Guide for Adoptive Parents, digital guides, listening guides and organizations for the adoption community.', resources, 'resources.html', '', 'resources.html'))
 W('about.html', page('About & Contact | Open Adoption Project', 'Meet Lanette & Shaun Nelson, share your story on the show, or invite us to speak.', about, 'about.html', '', 'about.html'))
 for i, x in enumerate(NUM):
     W(f"episodes/{x['n']}.html", episode_page(x, NUM[i+1] if i+1 < len(NUM) else None, NUM[i-1] if i > 0 else None))
