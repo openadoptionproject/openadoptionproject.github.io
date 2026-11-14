@@ -450,6 +450,8 @@ if os.path.exists(DIST): shutil.rmtree(DIST)
 os.makedirs(f'{DIST}/assets'); os.makedirs(f'{DIST}/episodes')
 shutil.copy(f'{ROOT}/src/style.css', f'{DIST}/assets/style.css'); shutil.copy(f'{ROOT}/src/app.js', f'{DIST}/assets/app.js')
 if os.path.exists(f'{ROOT}/src/about.jpg'): shutil.copy(f'{ROOT}/src/about.jpg', f'{DIST}/assets/about.jpg')
+# Social media video files (TikTok clips) served at /media/...
+if os.path.isdir(f'{ROOT}/media'): shutil.copytree(f'{ROOT}/media', f'{DIST}/media')
 W = lambda p, s: open(f'{DIST}/{p}', 'w').write(s)
 W('index.html', page('Open Adoption Project | Adoption conversations centered on adoptee voices', 'A podcast with Lanette & Shaun Nelson, listening to adoptees, birth parents, adoptive families and researchers to learn what openness in adoption really looks like.', home, '', '', ''))
 W('start-here.html', page('Start Here: Openness 101 | Open Adoption Project', 'A beginner’s guide to openness in adoption: structural and communicative openness, research, myths and facts, key terms and a listening path.', start, 'start-here.html', '', 'start-here.html'))
