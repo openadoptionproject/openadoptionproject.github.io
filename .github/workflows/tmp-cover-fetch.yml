@@ -1,0 +1,19 @@
+name: tmp cover fetch
+on:
+  push:
+    branches: [tmp-cover-fetch]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    if: "!contains(github.event.head_commit.message, 'fetched')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          mkdir -p tmpcovers
+          curl -fsSL -o tmpcovers/127.png https://media.rss.com/openadoptionproject/ep_cover_20251028_041025_c65dd6f892ca33fe219a2baac19749f6.png
+          curl -fsSL -o tmpcovers/129.png https://media.rss.com/openadoptionproject/ep_cover_20260601_020606_82c55970d584eb4ee0681b9a0c79ac97.png
+          curl -fsSL -o tmpcovers/130.png https://media.rss.com/openadoptionproject/ep_cover_20260605_020610_072d9d93bb8c4999ed0c4fc0b97545df.png
+          git config user.name "github-actions"; git config user.email "actions@users.noreply.github.com"
+          git add tmpcovers && git commit -m "fetched" && git push
