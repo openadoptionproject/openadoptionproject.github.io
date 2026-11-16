@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><title>sending</title><body>Sending image…<script>
+(async()=>{const f=new URLSearchParams(location.search).get('f')||'deal_post.jpg';
+const b=await (await fetch(f)).arrayBuffer();
+window.opener&&window.opener.postMessage({oapImage:true,name:f,buf:b},'*',[b]);
+document.body.textContent='Sent '+f;setTimeout(()=>window.close(),800);})();
+</script>
