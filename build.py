@@ -110,6 +110,7 @@ def page(title, desc, body, active='', pre='', canon=''):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <meta name="p:domain_verify" content="2874b522502b7564db9b2b2d203effc5"/>
+<script data-goatcounter="https://openadoptionproject.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{pre}assets/style.css">
 </head>
